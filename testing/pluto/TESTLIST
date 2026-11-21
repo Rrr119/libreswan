@@ -1735,6 +1735,14 @@ kvmplutotest	interop-ikev2-strongswan-49-intermediate-responder		good	github/240
 kvmplutotest	interop-ikev2-strongswan-49-intermediate-initiator		good	github/2401,github/2958
 kvmplutotest	interop-ikev2-strongswan-49-intermediate-cert-initiator		good
 
+# Requires KVM_USE_MLDSA=true (USE_MLDSA=true) and strongSwan's ML plugin.
+kvmplutotest	interop-ikev2-strongswan-50-responder-mldsa-65		good
+kvmplutotest	interop-ikev2-strongswan-51-initiator-mldsa-65		good
+kvmplutotest	interop-ikev2-strongswan-52-responder-mldsa-44		good
+kvmplutotest	interop-ikev2-strongswan-53-initiator-mldsa-44		good
+kvmplutotest	interop-ikev2-strongswan-54-responder-mldsa-87		good
+kvmplutotest	interop-ikev2-strongswan-55-initiator-mldsa-87		good
+
 # VPN System Roles - skip automated testing for now
 kvmplutotest	ikev2-systemrole-01-host-to-host	good
 kvmplutotest	ikev2-systemrole-02-net-to-net		good	github/1751

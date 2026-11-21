@@ -107,6 +107,7 @@ static int print_secrets(struct secret *secret,
 	case SECRET_RSA:
 	case SECRET_ECDSA:
 	case SECRET_EDDSA:
+	case SECRET_MLDSA:
 	{
 		const struct secret_pubkey_stuff *stuff = secret_pubkey_stuff(secret);
 		kind = stuff->content.type->name;
@@ -836,6 +837,21 @@ struct authby private_key_authby(const struct secret_pubkey_stuff *pks,
 	if (type == &pubkey_type_eddsa) {
 		return (struct authby) { AUTHBY_EDDSA, };
 	}
+
+#ifdef USE_MLDSA
+	if (type == &pubkey_type_mldsa) {
+		switch (pks->content.public_key->u.mldsa.paramSet) {
+		case SEC_OID_ML_DSA_44:
+			return (struct authby) { AUTHBY_MLDSA_44, };
+		case SEC_OID_ML_DSA_65:
+			return (struct authby) { AUTHBY_MLDSA_65, };
+		case SEC_OID_ML_DSA_87:
+			return (struct authby) { AUTHBY_MLDSA_87, };
+		default:
+			return (struct authby) {0};
+		}
+	}
+#endif
 
 	if (type != &pubkey_type_ecdsa) {
 		return (struct authby) {0};

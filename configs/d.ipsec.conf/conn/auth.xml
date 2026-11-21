@@ -15,10 +15,12 @@
       authentication with SHA2-384, &rsa-sha2_512; for RSA-PSS digital
       signatures based authentication with SHA2-512, &ecdsa; for ECDSA
       digital signatures based authentication, &eddsa; for EdDSA
-      digital signatures based authentication, &digsig; to let the
-      private key determine the digital signature algorithm at runtime
-      (RSA, ECDSA, or EdDSA), &psk; or &secret; for shared secrets
-      (PSK) authentication and &null; for null-authentication.
+      digital signatures based authentication,
+      <option>mldsa</option> for ML-DSA post-quantum digital
+      signatures, &digsig; to let the private key determine the
+      digital signature algorithm at runtime (RSA, ECDSA, EdDSA, or
+      ML-DSA), &psk; or &secret; for shared secrets (PSK)
+      authentication and &null; for null-authentication.
     </para>
     <para>
       There is no default value - if unset, the symmetrical

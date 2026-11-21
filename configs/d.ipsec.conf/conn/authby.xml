@@ -22,9 +22,9 @@
 	</term>
 	<listitem>
 	  <para>
-	    Allow authentication using an ECDSA, EdDSA, or RSA digital
-	    signature.  The exact choice is determined at run time
-	    based on the connections private key and supported
+	    Allow authentication using an ECDSA, EdDSA, ML-DSA, or RSA
+	    digital signature.  The exact choice is determined at run
+	    time based on the connection's private key and supported
 	    algorithms.
 	  </para>
 	</listitem>
@@ -59,6 +59,52 @@
 	    Allow authentication using an EdDSA digital signature
 	    (based on curve 25519).
 	  </para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>
+	  <option>mldsa</option>
+	</term>
+	<term>
+	  <option>mldsa-44</option>
+	</term>
+	<term>
+	  <option>mldsa-65</option>
+	</term>
+	<term>
+	  <option>mldsa-87</option>
+	</term>
+	<listitem>
+	  <para>
+	    Allow authentication using an ML-DSA (FIPS 204)
+	    post-quantum digital signature.  <option>mldsa</option>
+	    permits all three parameter sets; the exact parameter set
+	    is selected from the certificate's public key.
+	  </para>
+	  <para>
+	    The parameter set can be restricted to ML-DSA-44,
+	    ML-DSA-65, or ML-DSA-87 using
+	    <option>mldsa-44</option>, <option>mldsa-65</option>, or
+	    <option>mldsa-87</option> respectively.
+	  </para>
+	  <caution>
+	    <para>
+	      This option is experimental and requires &Libreswan; to
+	      be built with <option>USE_MLDSA=true</option> and an NSS
+	      version with ML-DSA signing and verification support.
+	      ML-DSA keys and certificates must currently be generated
+	      with another tool (for example strongSwan's
+	      <command>pki</command>) and then imported into the NSS
+	      database.
+	    </para>
+	    <para>
+	      If <option>mldsa</option> is configured in a build
+	      without ML-DSA support, connection loading succeeds so
+	      that the same configuration can be shared across builds,
+	      but an IKE attempt fails with a clear diagnostic.
+	    </para>
+	  </caution>
 	</listitem>
       </varlistentry>
 

@@ -97,6 +97,7 @@ struct authby authby_and_hash(struct authby authby,
 		/* only allow algs that don't need a hash */
 		return authby_and(authby, (struct authby) {
 				AUTHBY_EDDSA,
+				AUTHBY_MLDSA,
 			});
 	}
 	return (struct authby) {0};
@@ -187,6 +188,18 @@ static const struct authby_name {
 	 */
 
 	{ "EDDSA", "eddsa", { AUTHBY_EDDSA, }, },
+
+	/*
+	 * ML-DSA (FIPS 204).  The parameter set is selected from the
+	 * certificate's public key, but each parameter set also gets
+	 * its own authby bit so that a key can narrow the negotiation
+	 * to the matching AlgorithmIdentifier.
+	 */
+
+	{ "MLDSA", "mldsa", { AUTHBY_MLDSA, }, },
+	{ "MLDSA_44", "mldsa-44", { AUTHBY_MLDSA_44, }, },
+	{ "MLDSA_65", "mldsa-65", { AUTHBY_MLDSA_65, }, },
+	{ "MLDSA_87", "mldsa-87", { AUTHBY_MLDSA_87, }, },
 
 	/* stragglers */
 
@@ -391,6 +404,9 @@ struct authby authby_v2AUTH_digsig_payload(void)
 #ifdef USE_EDDSA
 		AUTHBY_EDDSA_BLOB,
 #endif
+#ifdef USE_MLDSA
+		AUTHBY_MLDSA,
+#endif
 		AUTHBY_RSASSA_BLOB,
 		AUTHBY_ECDSA_BLOB,
 	};
@@ -406,6 +422,9 @@ struct authby authby_v2AUTH_pubkey(void)
 	return (struct authby) {
 #ifdef USE_EDDSA
 		AUTHBY_EDDSA,
+#endif
+#ifdef USE_MLDSA
+		AUTHBY_MLDSA,
 #endif
 		AUTHBY_RSASSA,
 		AUTHBY_ECDSA,

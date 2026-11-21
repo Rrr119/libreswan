@@ -4,6 +4,11 @@ v5.5 (unreleased)
 * Security
   - remove build support for DH2 and DH22 (was already disabled) [Paul]
 * IKEv2:
+  - support ML-DSA (FIPS 204) post-quantum IKE_AUTH authentication
+    + configure with authby=mldsa (or mldsa-44/mldsa-65/mldsa-87)
+    + experimental; build with USE_MLDSA=true and an NSS version with
+      ML-DSA sign/verify support
+    + parameter set is selected from the X.509 certificate's key
   - fix Redirect error logging [Paul de Lange (GenDigital), Chaitanya Bhardwaj, #3107]
   - support auth=digsig and selecting auth-from-key [RuiL, #2708, #2503, #3068]
   - support RFC 9593 Announcing Supported Authentication Methods [Osema Fadhel (GSoC), Vukašin]

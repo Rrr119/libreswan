@@ -471,6 +471,23 @@ static bool score_host_connection(const struct ike_sa *ike,
 			vdbg("EdDSA and no private key");
 		}
 
+		if (authby_has_any(matching_authbys, (struct authby) {
+					AUTHBY_MLDSA,
+				})) {
+#ifdef USE_MLDSA
+			if (get_local_private_key(d, &pubkey_type_mldsa,
+						  ike->sa.logger) != NULL) {
+				vdbg("ML-DSA and private key");
+				break;
+			}
+			missing_key = true;
+			vdbg("ML-DSA and no private key");
+#else
+			vdbg("ML-DSA is not supported by this build");
+			break;
+#endif
+		}
+
 		if (missing_key) {
 			authby_buf eb;
 			vdbg("no keys found for %s",

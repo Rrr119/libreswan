@@ -1,0 +1,17 @@
+{
+  "root": "/home/dev/feedback/uid30815",
+  "B": "/home/dev/feedback/uid30815",
+  "sha": "879d7293317d605aa60cd812c2a7d2a8bc98c981",
+  "wslDistro": "Ubuntu-26.04",
+  "source": {
+    "owner": "libreswan",
+    "repo": "libreswan",
+    "sha": "879d7293317d605aa60cd812c2a7d2a8bc98c981"
+  },
+  "fork": {
+    "owner": "Rrr119",
+    "repo": "libreswan",
+    "cloneUrl": "https://github.com/Rrr119/libreswan.git"
+  },
+  "at": "2026-11-21T05:47:01.098Z"
+}

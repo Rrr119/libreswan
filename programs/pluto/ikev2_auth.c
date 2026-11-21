@@ -426,6 +426,26 @@ static struct v2AUTH_method v2AUTH_method(struct ike_sa *ike,
 	bad_case(method);
 }
 
+static bool v2AUTH_signature_is_mldsa(shunk_t signature)
+{
+	/*
+	 * The AUTH payload prefixes the AlgorithmIdentifier with a
+	 * one-byte ASN.1 length.  The three ML-DSA OIDs differ only in
+	 * the final arc (17, 18, 19).
+	 */
+	static const uint8_t prefix[] = {
+		ASN1_MLDSA_IDENTITY_SIZE,
+		0x30, 0x0b, 0x06, 0x09, 0x60, 0x86, 0x48, 0x01,
+		0x65, 0x03, 0x04, 0x03,
+	};
+	if (signature.len < sizeof(prefix) + 1 ||
+	    !memeq(signature.ptr, prefix, sizeof(prefix))) {
+		return false;
+	}
+	return signature.ptr[sizeof(prefix)] >= 0x11 &&
+	       signature.ptr[sizeof(prefix)] <= 0x13;
+}
+
 struct v2AUTH_method local_v2AUTH_method(struct ike_sa *ike)
 {
 	struct connection *c = ike->sa.st_connection;
@@ -473,6 +493,18 @@ struct v2AUTH_method local_v2AUTH_method(struct ike_sa *ike)
 		return v2AUTH_method(ike, negotiated_authby,
 				     impair.force_v2_auth_method.value);
 	}
+
+#ifndef USE_MLDSA
+	if (authby_has_any(negotiated_authby, (struct authby) {
+				AUTHBY_MLDSA,
+			})) {
+		llog(RC_LOG, ike->sa.logger,
+		     "ML-DSA authentication is configured but this build does not support it; rebuild with USE_MLDSA=true");
+		return (struct v2AUTH_method) {
+			.method = IKEv2_AUTH_RESERVED,
+		};
+	}
+#endif
 
 	if (!authby_is_set(negotiated_authby)) {
 		authby_buf cb;
@@ -829,6 +861,13 @@ diag_t verify_v2AUTH_and_log(enum ikev2_auth_method recv_auth,
 	case IKEv2_AUTH_DIGITAL_SIGNATURE:
 	{
 		if (!authby_has_v2AUTH_digsig_payload(remote->authby)) {
+#ifndef USE_MLDSA
+			if (authby_has_any(remote->authby, (struct authby) {
+						AUTHBY_MLDSA,
+					})) {
+				return diag("authentication failed: peer attempted ML-DSA authentication but this build does not support it; rebuild with USE_MLDSA=true");
+			}
+#endif
 			authby_buf an;
 			return diag("authentication failed: peer attempted authentication through Digital Signature but we want %s",
 				    str_authby(remote->authby, &an));
@@ -948,7 +987,15 @@ diag_t verify_v2AUTH_and_log(enum ikev2_auth_method recv_auth,
 
 		ldbg(ike->sa.logger, "digsig:   no match");
 		authby_buf an;
-		return diag("authentication failed: no acceptable ECDSA/RSA-PSS ASN.1 signature hash proposal included for %s",
+		if (v2AUTH_signature_is_mldsa(signature)) {
+#ifdef USE_MLDSA
+			return diag("authentication failed: peer sent an ML-DSA AlgorithmIdentifier that does not match local policy %s",
+				    str_authby(remote->authby, &an));
+#else
+			return diag("authentication failed: peer attempted ML-DSA authentication but this build does not support it; rebuild with USE_MLDSA=true");
+#endif
+		}
+		return diag("authentication failed: no acceptable ECDSA/EdDSA/ML-DSA/RSA-PSS ASN.1 signature proposal included for %s",
 			    str_authby(remote->authby, &an));
 
 	}

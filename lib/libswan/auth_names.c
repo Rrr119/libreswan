@@ -32,6 +32,9 @@ static const char *const auth_name[] = {
 #if 0
 	S(AUTH_EDDSA_ED448_BLOB),
 #endif
+	S(AUTH_MLDSA_44),
+	S(AUTH_MLDSA_65),
+	S(AUTH_MLDSA_87),
 	S(AUTH_NEVER),
 	S(AUTH_NULL),
 	S(AUTH_PSK),

@@ -27,6 +27,7 @@ authby secret
 authby psk
 
 authby eddsa
+authby mldsa
 
 authby ecdsa
 authby ecdsa-sha2
@@ -53,6 +54,8 @@ authby rsa-sha2_256,rsa-sha2_384,rsa-sha2_512
 
 leftauth ecdsa
 leftauth eddsa
+leftauth mldsa
+leftauth mldsa authby=mldsa
 leftauth none
 leftauth null
 leftauth psk

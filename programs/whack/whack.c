@@ -81,7 +81,7 @@ static void help(void)
 		"	[--sourceip <ip-address>] [--interface-ip <address>/<mask>]\\\n"
 		"	[--vti <ip-address>/mask] \\\n"
 		"	[--updown <updown>] \\\n"
-		"	[--authby <psk | rsasig | rsa | ecdsa | null | eaponly>] \\\n"
+		"	[--authby <psk | rsasig | rsa | ecdsa | eddsa | mldsa | null | eaponly>] \\\n"
 		"	[--autheap {none,tls} \\\n"
 		"	[--cert <friendly_name> | --ckaid <ckaid>] \\\n"
 		"	[--ca <distinguished name>] \\\n"

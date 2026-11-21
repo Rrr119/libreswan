@@ -74,8 +74,14 @@ OBJS += pubkey/pubkey_signer_rsa_ikev1.o
 OBJS += pubkey/pubkey_signer_rsa_ikev2.o
 OBJS += pubkey/pubkey_signer_ecdsa.o
 OBJS += pubkey/pubkey_signer_eddsa.o
+ifeq ($(USE_MLDSA),true)
+OBJS += pubkey/pubkey_signer_mldsa.o
+endif
 OBJS += pubkey/pubkey_type_rsa.o
 OBJS += pubkey/pubkey_type_ecp.o
+ifeq ($(USE_MLDSA),true)
+OBJS += pubkey/pubkey_type_mldsa.o
+endif
 OBJS += pubkey/pubkey_sign_hash.o
 
 OBJS += binaryscale-iec-60027-2.o

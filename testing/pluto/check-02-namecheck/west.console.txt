@@ -252,7 +252,7 @@ west #
          jam_enum_short 252: HMAC_SHA2_256_TRUNCBUG OK
          jam_enum_human 252: hmac-sha2-256-truncbug OK
          match HMAC_SHA2_256_TRUNCBUG [short]: OK
-  auth_names: [0..19]
+  auth_names: [0..22]
     0 -> AUTH_PSK
          jam_names 0: AUTH_PSK OK
          match AUTH_PSK: OK
@@ -344,54 +344,75 @@ west #
          jam_names_short 12: EDDSA_ED25519_BLOB OK
          jam_names_human 12: eddsa-ed25519-blob OK
          match EDDSA_ED25519_BLOB [short]: OK
-   13 -> AUTH_RSASSA_PKCS1_V1_5_SHA2_512_BLOB
-         jam_names 13: AUTH_RSASSA_PKCS1_V1_5_SHA2_512_BLOB OK
+   13 -> AUTH_MLDSA_44
+         jam_names 13: AUTH_MLDSA_44 OK
+         match AUTH_MLDSA_44: OK
+         short_name 13: MLDSA_44 OK
+         jam_names_short 13: MLDSA_44 OK
+         jam_names_human 13: mldsa-44 OK
+         match MLDSA_44 [short]: OK
+   14 -> AUTH_MLDSA_65
+         jam_names 14: AUTH_MLDSA_65 OK
+         match AUTH_MLDSA_65: OK
+         short_name 14: MLDSA_65 OK
+         jam_names_short 14: MLDSA_65 OK
+         jam_names_human 14: mldsa-65 OK
+         match MLDSA_65 [short]: OK
+   15 -> AUTH_MLDSA_87
+         jam_names 15: AUTH_MLDSA_87 OK
+         match AUTH_MLDSA_87: OK
+         short_name 15: MLDSA_87 OK
+         jam_names_short 15: MLDSA_87 OK
+         jam_names_human 15: mldsa-87 OK
+         match MLDSA_87 [short]: OK
+   16 -> AUTH_RSASSA_PKCS1_V1_5_SHA2_512_BLOB
+         jam_names 16: AUTH_RSASSA_PKCS1_V1_5_SHA2_512_BLOB OK
          match AUTH_RSASSA_PKCS1_V1_5_SHA2_512_BLOB: OK
-         short_name 13: RSASSA_PKCS1_V1_5_SHA2_512_BLOB OK
-         jam_names_short 13: RSASSA_PKCS1_V1_5_SHA2_512_BLOB OK
-         jam_names_human 13: rsassa-pkcs1-v1-5-sha2-512-blob OK
+         short_name 16: RSASSA_PKCS1_V1_5_SHA2_512_BLOB OK
+         jam_names_short 16: RSASSA_PKCS1_V1_5_SHA2_512_BLOB OK
+         jam_names_human 16: rsassa-pkcs1-v1-5-sha2-512-blob OK
          match RSASSA_PKCS1_V1_5_SHA2_512_BLOB [short]: OK
-   14 -> AUTH_RSASSA_PKCS1_V1_5_SHA2_384_BLOB
-         jam_names 14: AUTH_RSASSA_PKCS1_V1_5_SHA2_384_BLOB OK
+   17 -> AUTH_RSASSA_PKCS1_V1_5_SHA2_384_BLOB
+         jam_names 17: AUTH_RSASSA_PKCS1_V1_5_SHA2_384_BLOB OK
          match AUTH_RSASSA_PKCS1_V1_5_SHA2_384_BLOB: OK
-         short_name 14: RSASSA_PKCS1_V1_5_SHA2_384_BLOB OK
-         jam_names_short 14: RSASSA_PKCS1_V1_5_SHA2_384_BLOB OK
-         jam_names_human 14: rsassa-pkcs1-v1-5-sha2-384-blob OK
+         short_name 17: RSASSA_PKCS1_V1_5_SHA2_384_BLOB OK
+         jam_names_short 17: RSASSA_PKCS1_V1_5_SHA2_384_BLOB OK
+         jam_names_human 17: rsassa-pkcs1-v1-5-sha2-384-blob OK
          match RSASSA_PKCS1_V1_5_SHA2_384_BLOB [short]: OK
-   15 -> AUTH_RSASSA_PKCS1_V1_5_SHA2_256_BLOB
-         jam_names 15: AUTH_RSASSA_PKCS1_V1_5_SHA2_256_BLOB OK
+   18 -> AUTH_RSASSA_PKCS1_V1_5_SHA2_256_BLOB
+         jam_names 18: AUTH_RSASSA_PKCS1_V1_5_SHA2_256_BLOB OK
          match AUTH_RSASSA_PKCS1_V1_5_SHA2_256_BLOB: OK
-         short_name 15: RSASSA_PKCS1_V1_5_SHA2_256_BLOB OK
-         jam_names_short 15: RSASSA_PKCS1_V1_5_SHA2_256_BLOB OK
-         jam_names_human 15: rsassa-pkcs1-v1-5-sha2-256-blob OK
+         short_name 18: RSASSA_PKCS1_V1_5_SHA2_256_BLOB OK
+         jam_names_short 18: RSASSA_PKCS1_V1_5_SHA2_256_BLOB OK
+         jam_names_human 18: rsassa-pkcs1-v1-5-sha2-256-blob OK
          match RSASSA_PKCS1_V1_5_SHA2_256_BLOB [short]: OK
-   16 -> AUTH_RSASSA_PKCS1_V1_5_SHA1_BLOB
-         jam_names 16: AUTH_RSASSA_PKCS1_V1_5_SHA1_BLOB OK
+   19 -> AUTH_RSASSA_PKCS1_V1_5_SHA1_BLOB
+         jam_names 19: AUTH_RSASSA_PKCS1_V1_5_SHA1_BLOB OK
          match AUTH_RSASSA_PKCS1_V1_5_SHA1_BLOB: OK
-         short_name 16: RSASSA_PKCS1_V1_5_SHA1_BLOB OK
-         jam_names_short 16: RSASSA_PKCS1_V1_5_SHA1_BLOB OK
-         jam_names_human 16: rsassa-pkcs1-v1-5-sha1-blob OK
+         short_name 19: RSASSA_PKCS1_V1_5_SHA1_BLOB OK
+         jam_names_short 19: RSASSA_PKCS1_V1_5_SHA1_BLOB OK
+         jam_names_human 19: rsassa-pkcs1-v1-5-sha1-blob OK
          match RSASSA_PKCS1_V1_5_SHA1_BLOB [short]: OK
-   17 -> AUTH_RSASIG_IKEv1
-         jam_names 17: AUTH_RSASIG_IKEv1 OK
+   20 -> AUTH_RSASIG_IKEv1
+         jam_names 20: AUTH_RSASIG_IKEv1 OK
          match AUTH_RSASIG_IKEv1: OK
-         short_name 17: RSASIG_IKEv1 OK
-         jam_names_short 17: RSASIG_IKEv1 OK
-         jam_names_human 17: rsasig-ikev1 OK
+         short_name 20: RSASIG_IKEv1 OK
+         jam_names_short 20: RSASIG_IKEv1 OK
+         jam_names_human 20: rsasig-ikev1 OK
          match RSASIG_IKEv1 [short]: OK
-   18 -> AUTH_NEVER
-         jam_names 18: AUTH_NEVER OK
+   21 -> AUTH_NEVER
+         jam_names 21: AUTH_NEVER OK
          match AUTH_NEVER: OK
-         short_name 18: NEVER OK
-         jam_names_short 18: NEVER OK
-         jam_names_human 18: never OK
+         short_name 21: NEVER OK
+         jam_names_short 21: NEVER OK
+         jam_names_human 21: never OK
          match NEVER [short]: OK
-   19 -> AUTH_EAPONLY
-         jam_names 19: AUTH_EAPONLY OK
+   22 -> AUTH_EAPONLY
+         jam_names 22: AUTH_EAPONLY OK
          match AUTH_EAPONLY: OK
-         short_name 19: EAPONLY OK
-         jam_names_short 19: EAPONLY OK
-         jam_names_human 19: eaponly OK
+         short_name 22: EAPONLY OK
+         jam_names_short 22: EAPONLY OK
+         jam_names_human 22: eaponly OK
          match EAPONLY [short]: OK
   autostart_names: [1..6]
     1 -> ignore
@@ -7610,7 +7631,7 @@ name for -1 present (should be absent)
          short_name 3: disabled OK
          jam_sparse_short 3: disabled OK
          jam_sparse_human 3: disabled OK
-  secret_kind_names: [1..8]
+  secret_kind_names: [1..9]
     1 -> SECRET_PSK
          jam_enum 1: SECRET_PSK OK
          match SECRET_PSK: OK
@@ -7639,33 +7660,40 @@ name for -1 present (should be absent)
          jam_enum_short 4: EDDSA OK
          jam_enum_human 4: eddsa OK
          match EDDSA [short]: OK
-    5 -> SECRET_XAUTH
-         jam_enum 5: SECRET_XAUTH OK
+    5 -> SECRET_MLDSA
+         jam_enum 5: SECRET_MLDSA OK
+         match SECRET_MLDSA: OK
+         short_name 5: MLDSA OK
+         jam_enum_short 5: MLDSA OK
+         jam_enum_human 5: mldsa OK
+         match MLDSA [short]: OK
+    6 -> SECRET_XAUTH
+         jam_enum 6: SECRET_XAUTH OK
          match SECRET_XAUTH: OK
-         short_name 5: XAUTH OK
-         jam_enum_short 5: XAUTH OK
-         jam_enum_human 5: xauth OK
+         short_name 6: XAUTH OK
+         jam_enum_short 6: XAUTH OK
+         jam_enum_human 6: xauth OK
          match XAUTH [short]: OK
-    6 -> SECRET_PPK
-         jam_enum 6: SECRET_PPK OK
+    7 -> SECRET_PPK
+         jam_enum 7: SECRET_PPK OK
          match SECRET_PPK: OK
-         short_name 6: PPK OK
-         jam_enum_short 6: PPK OK
-         jam_enum_human 6: ppk OK
+         short_name 7: PPK OK
+         jam_enum_short 7: PPK OK
+         jam_enum_human 7: ppk OK
          match PPK [short]: OK
-    7 -> SECRET_NULL
-         jam_enum 7: SECRET_NULL OK
+    8 -> SECRET_NULL
+         jam_enum 8: SECRET_NULL OK
          match SECRET_NULL: OK
-         short_name 7: NULL OK
-         jam_enum_short 7: NULL OK
-         jam_enum_human 7: null OK
+         short_name 8: NULL OK
+         jam_enum_short 8: NULL OK
+         jam_enum_human 8: null OK
          match NULL [short]: OK
-    8 -> SECRET_INVALID
-         jam_enum 8: SECRET_INVALID OK
+    9 -> SECRET_INVALID
+         jam_enum 9: SECRET_INVALID OK
          match SECRET_INVALID: OK
-         short_name 8: INVALID OK
-         jam_enum_short 8: INVALID OK
-         jam_enum_human 8: invalid OK
+         short_name 9: INVALID OK
+         jam_enum_short 9: INVALID OK
+         jam_enum_human 9: invalid OK
          match INVALID [short]: OK
   send_ca_policy_names: [0..2]
     0 -> CA_SEND_NONE
